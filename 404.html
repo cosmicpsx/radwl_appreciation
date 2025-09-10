@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radwl Appreciation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:nth-child(1) { animation-delay: -0s; }
+        .card:nth-child(2) { animation-delay: -1s; }
+        .card:nth-child(3) { animation-delay: -2s; }
+        .card:nth-child(4) { animation-delay: -3s; }
+        .card:nth-child(5) { animation-delay: -4s; }
+        .card:nth-child(6) { animation-delay: -5s; }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .card p {
+            line-height: 1.6;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .stats-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .footer h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .thank-you {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="pulse">✨ Radwl Appreciation ✨</h1>
+            <p>Celebrating the incredible dedication and talent of Radwl - the driving force behind Tiny Wheels' amazing experiences across Roblox and Minecraft!</p>
+        </header>
+
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-icon">🏎️</span>
+                <h3>Tiny Wheels Developer</h3>
+                <p>Radwl brings incredible racing experiences to life in Roblox! Their development skills have made Tiny Wheels one of the most exciting racing games on the platform, with smooth mechanics, engaging gameplay, and constant improvements that keep players coming back for more.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">⚡</span>
+                <h3>24/7 Server Host</h3>
+                <p>Dedication at its finest! Radwl ensures the Tiny Wheels Minecraft server is always running, providing a consistent and reliable gaming experience. This level of commitment to the community is truly remarkable and shows genuine care for all players.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🛠️</span>
+                <h3>Technical Excellence</h3>
+                <p>Behind every smooth race and seamless server experience is Radwl's technical expertise. From optimizing game performance to maintaining server stability, their skills ensure that both the Roblox game and Minecraft server run flawlessly.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🌟</span>
+                <h3>Community Builder</h3>
+                <p>Radwl doesn't just create games - they build communities! By maintaining both platforms and consistently improving the player experience, they've fostered a thriving community of racing enthusiasts who love what Tiny Wheels has to offer.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🚀</span>
+                <h3>Innovation & Updates</h3>
+                <p>Never settling for "good enough," Radwl continuously pushes boundaries with new features, improvements, and creative solutions. Their commitment to innovation keeps Tiny Wheels fresh, exciting, and ahead of the curve in both Roblox and Minecraft gaming.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">💎</span>
+                <h3>Passion & Dedication</h3>
+                <p>What truly sets Radwl apart is their genuine passion for creating amazing gaming experiences. Their dedication goes beyond just coding - it's about crafting memorable moments, building lasting friendships, and bringing joy to countless players every day.</p>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2>Radwl's Impact</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Server Uptime</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Dedication Level</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Amazing Platforms</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Community Love</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <h3>Thank You, Radwl! 🏆</h3>
+            <p class="thank-you">
+                Your incredible work on Tiny Wheels and unwavering commitment to keeping the Minecraft server running 24/7 doesn't go unnoticed. You've created something truly special that brings joy to so many players. The gaming community is lucky to have someone as talented and dedicated as you!
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Create animated stars
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const starCount = 100;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Animate cards on scroll
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        }
+
+        // Add interactive hover effects
+        function addInteractiveEffects() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+        }
+
+        // Initialize all animations
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            setTimeout(animateOnScroll, 100);
+            setTimeout(addInteractiveEffects, 200);
+        });
+
+        // Add parallax scrolling effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const stars = document.querySelector('.stars');
+            stars.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
